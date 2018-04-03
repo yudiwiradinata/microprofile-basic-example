@@ -13,7 +13,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.MessageBodyWriter;
 import javax.ws.rs.ext.Provider;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
@@ -32,7 +31,7 @@ public class BookMessageBodyWriter implements MessageBodyWriter<Book> {
     }
 
     @Override
-    public void writeTo(Book book, Class<?> aClass, Type type, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> multivaluedMap, OutputStream outputStream) throws IOException, WebApplicationException {
+    public void writeTo(Book book, Class<?> aClass, Type type, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> multivaluedMap, OutputStream outputStream) throws WebApplicationException {
         JsonWriter jsonWriter = Json.createWriter(outputStream);
         JsonObject jsonObject = BookMapper.map(book);
         jsonWriter.writeObject(jsonObject);
